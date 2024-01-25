@@ -1,29 +1,34 @@
 import "./style.css";
 
-const fileInput = document.getElementById("fileInput");
-const filePreview = document.getElementById("filePreview");
+let selectedFiles = []; // Array to keep track of selected files
 
-fileInput.addEventListener("change", function () {
-  filePreview.innerHTML = "";
-  if (fileInput.files.length > 0) {
-    filePreview.classList.add("active");
-    for (const file of fileInput.files) {
-      const fileWrapper = document.createElement("div");
-      fileWrapper.classList.add("file-wrapper");
-      const fileName = document.createElement("span");
+fileInput.addEventListener('change', function () {
+  filePreview.innerHTML = '';
+  selectedFiles = Array.from(fileInput.files); // Update selectedFiles with the new FileList
+  updateFilePreview();
+});
+
+function updateFilePreview() {
+  filePreview.innerHTML = '';
+  if (selectedFiles.length > 0) {
+    filePreview.classList.add('active');
+    selectedFiles.forEach((file, index) => {
+      const fileWrapper = document.createElement('div');
+      fileWrapper.classList.add('file-wrapper');
+      const fileName = document.createElement('span');
       fileName.textContent = file.name;
-      const closeIcon = document.createElement("span");
-      closeIcon.textContent = "x";
-      closeIcon.classList.add("close-icon");
-      closeIcon.addEventListener("click", function () {
-        fileInput.value = "";
-        filePreview.classList.remove("active");
+      const closeIcon = document.createElement('span');
+      closeIcon.textContent = 'x';
+      closeIcon.classList.add('close-icon');
+      closeIcon.addEventListener('click', function () {
+        selectedFiles.splice(index, 1); // Remove the file from selectedFiles
+        updateFilePreview(); // Update the file preview
       });
       fileWrapper.appendChild(fileName);
       fileWrapper.appendChild(closeIcon);
       filePreview.appendChild(fileWrapper);
-    }
+    });
   } else {
-    filePreview.classList.remove("active");
+    filePreview.classList.remove('active');
   }
-});
+}
