@@ -16,13 +16,13 @@ function updateFilePreview() {
       const fileWrapper = document.createElement('div');
       fileWrapper.classList.add('file-wrapper');
       const fileName = document.createElement('span');
-      fileName.textContent = file.name;
+      fileName.textContent = `${file.name} (${(file.size / 1024).toFixed(2)} KB)`;
       const closeIcon = document.createElement('span');
       closeIcon.textContent = 'x';
       closeIcon.classList.add('close-icon');
       closeIcon.addEventListener('click', function () {
-        selectedFiles.splice(index, 1); // Remove the file from selectedFiles
-        updateFilePreview(); // Update the file preview
+        selectedFiles.splice(index, 1);
+        updateFilePreview();
       });
       fileWrapper.appendChild(fileName);
       fileWrapper.appendChild(closeIcon);
