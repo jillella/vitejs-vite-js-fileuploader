@@ -32,3 +32,39 @@
   color: red;
   margin-left: 10px;
 }
+
+/* drag and drop feature */
+
+.file-preview {
+  width: 100%;
+  height: 200px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  overflow: auto;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.file-preview .file-wrapper {
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.file-preview .file-wrapper .close-icon {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.file-preview.highlight {
+  border: 2px dashed #aaa;
+  background-color: #f8f8f8;
+}
